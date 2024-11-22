@@ -1,14 +1,25 @@
-<html>
-	<head>
-                <link rel="stylesheet" href="/index.css">
-	</head>
-	<body>
-		<div class="shadowbox">
-			<p>This is Nurtha personal Website in Github</p>
-		</div>
-                <h1>NOTHING HERE</h1>
-		<a href="./Suzume No5 Tojimari.mp3" download>Science</a>
-		
-		
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Date</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Would you like to go out with me?</h1>
+        <div class="buttons">
+            <button onclick="yesResponse()">Yes</button>
+            <button onclick="noResponse()">No</button>
+        </div>
+        <div id="date-picker" class="hidden">
+            <h2>When are you free?</h2>
+            <input type="date" id="date" required>
+            <input type="time" id="time" required>
+            <button onclick="saveDate()">Submit</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>
