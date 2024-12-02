@@ -10,8 +10,8 @@
     <div class="container">
         <h1>Would you like to go out with me?</h1>
         <div class="buttons">
-            <button id="yes-btn" onclick=("yesResponse()")>Yes</button>
-            <button id="no-btn" onclick=("noResponse()")>No</button>
+            <button onclick="yesResponse()">Yes</button>
+            <button onclick="noResponse()">No</button>
         </div>
         <div id="date-picker" class="hidden">
             <h2>When are you free?</h2>
@@ -19,5 +19,21 @@
             <input type="time" id="time" required>
             <button onclick="submitDate()">Submit</button>
         </div>
-        <!-- Poem Section -->
-        <div id="po
+        <!-- Poem and Selected Date Section -->
+        <div id="poem-section" class="hidden">
+            <h3>Here's something special for you:</h3>
+            <p id="poem-text">
+                "Roses are red, violets are blue,<br>
+                I can't wait to spend the day with you.<br>
+                Pick a time, and let's make it true,<br>
+                Together, we'll create a memory anew."
+            </p>
+        </div>
+        <div id="selected-date" class="hidden">
+            <h4>Your chosen date and time:</h4>
+            <p id="date-time-display"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
