@@ -3,7 +3,7 @@ function yesResponse() {
 }
 
 function noResponse() {
-    window.location.href = "https://www.youtube.com/watch?v=URu1cpMqKuc"; // Replace with desired YouTube link
+    window.location.href = "https://youtu.be/krHj5oON6B0?si=6X93HaaPdpJoPBHY"; // Replace with desired YouTube link
 }
 
 function saveDate() {
