@@ -13,11 +13,25 @@
             <button onclick="yesResponse()">Yes</button>
             <button onclick="noResponse()">No</button>
         </div>
-        <div id="date-picker" class="hidden">
+        <div id="date-picker" class="hidden" hidden>
             <h2>When are you free?</h2>
             <input type="date" id="date" required>
             <input type="time" id="time" required>
-            <button onclick="saveDate()">Submit</button>
+            <button onclick="submitDate()">Submit</button>
+        </div>
+        <!-- Poem and Selected Date Section -->
+        <div id="poem-section" class="hidden" hidden>
+            <h3>Here's something special for you:</h3>
+            <p id="poem-text">
+                "Roses are red, violets are blue,<br>
+                I can't wait to spend the day with you.<br>
+                Pick a time, and let's make it true,<br>
+                Together, we'll create a memory anew."
+            </p>
+        </div>
+        <div id="selected-date" class="hidden">
+            <h4>Your chosen date and time:</h4>
+            <p id="date-time-display"></p>
         </div>
     </div>
     <script src="script.js"></script>
