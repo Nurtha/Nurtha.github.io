@@ -3,35 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day Date</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Will You Be My Valentine?</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Would you like to be my valentine?</h1>
+        <h1>Will you be my Valentine? ❤️</h1>
         <div class="buttons">
-            <button onclick="yesResponse()">Yes</button>
-            <button onclick="noResponse()">No</button>
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
         </div>
-        <div id="date-picker" class="hidden" hidden>
-            <h2>When are you free?</h2>
-            <input type="date" id="date" required>
-            <input type="time" id="time" required>
-            <button onclick="submitDate()">Submit</button>
-        </div>
-        <!-- Poem and Selected Date Section -->
-        <div id="poem-section" class="hidden" hidden>
-            <h3>Here's something special for you:</h3>
-            <p id="poem-text">
-                "Roses are red, violets are blue,<br>
-                I can't wait to spend the day with you.<br>
-                Pick a time, and let's make it true,<br>
-                Together, we'll create a memory anew."
-            </p>
-        </div>
-        <div id="selected-date" class="hidden">
-            <h4>Your chosen date and time:</h4>
-            <p id="date-time-display"></p>
+        <div id="datePicker" class="hidden">
+            <label for="date">Select our date:</label>
+            <input type="date" id="date">
+            <button id="downloadBtn">Download Date File</button>
         </div>
     </div>
     <script src="script.js"></script>
