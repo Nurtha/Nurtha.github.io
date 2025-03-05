@@ -1,61 +1,84 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
-    color: white;
-    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
 .container {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    background: white;
     border-radius: 15px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
 }
 
-h1 {
-    font-size: 2em;
+#diary-entries {
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
-.buttons {
-    margin-top: 20px;
+.entry {
+    background: #daf8cb;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    position: relative;
+    max-width: 80%;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+.entry::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -8px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid #daf8cb;
+    border-left: 10px solid transparent;
+}
+
+.date {
+    font-size: 12px;
+    color: gray;
+    text-align: right;
+}
+
+.input-area {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+textarea {
+    width: 100%;
+    height: 60px;
+    border-radius: 10px;
+    padding: 10px;
+    resize: none;
+    border: 1px solid #ccc;
 }
 
 button {
-    font-size: 1.2em;
-    margin: 10px;
-    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-#yesBtn {
-    background: #ff4b5c;
-    color: white;
-}
-
-#yesBtn:hover {
-    background: #e84351;
-}
-
-#noBtn {
-    background: #333;
-    color: white;
-}
-
-#noBtn:hover {
-    background: #555;
-}
-
-.hidden {
-    display: none;
-}
-
-#datePicker {
-    margin-top: 20px;
+button:hover {
+    background: #45a049;
 }

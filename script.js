@@ -1,40 +1,34 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let savedDate = localStorage.getItem("valentineDate");
-    if (savedDate) {
-        showSavedDate(savedDate);
-    }
-});
+document.addEventListener("DOMContentLoaded", loadEntries);
 
-document.getElementById("yesBtn").addEventListener("click", function () {
-    document.getElementById("datePicker").classList.remove("hidden");
-});
+function saveEntry() {
+    let input = document.getElementById("diary-input");
+    let text = input.value.trim();
+    
+    if (text === "") return;
 
-document.getElementById("noBtn").addEventListener("click", function () {
-    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-});
+    let date = new Date().toLocaleString();
+    let entry = { text, date };
 
-document.getElementById("downloadBtn").addEventListener("click", function () {
-    let date = document.getElementById("date").value;
-    if (date) {
-        localStorage.setItem("valentineDate", date);
-        showSavedDate(date);
+    let entries = JSON.parse(localStorage.getItem("diary")) || [];
+    entries.push(entry);
+    localStorage.setItem("diary", JSON.stringify(entries));
 
-        let text = `Our date: ${date}`;
-        let blob = new Blob([text], { type: "text/plain" });
-        let link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "Valentine_Date.txt";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    } else {
-        alert("Please select a date!");
-    }
-});
+    displayEntry(entry);
+    input.value = "";
+}
 
-function showSavedDate(date) {
-    document.getElementById("datePicker").innerHTML = `
-        <h2>Our date is set for: <span style="color: #ff4b5c;">${date}</span> ❤️</h2>
-    `;
-    document.getElementById("datePicker").classList.remove("hidden");
+function loadEntries() {
+    let entries = JSON.parse(localStorage.getItem("diary")) || [];
+    entries.forEach(displayEntry);
+}
+
+function displayEntry(entry) {
+    let container = document.getElementById("diary-entries");
+
+    let div = document.createElement("div");
+    div.className = "entry";
+    div.innerHTML = `<p>${entry.text}</p><div class="date">${entry.date}</div>`;
+
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
 }

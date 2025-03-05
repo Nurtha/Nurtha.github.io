@@ -3,20 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
+    <title>Diary Web</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Will you be my Valentine? ❤️</h1>
-        <div class="buttons">
-            <button id="yesBtn">Yes</button>
-            <button id="noBtn">No</button>
-        </div>
-        <div id="datePicker" class="hidden">
-            <label for="date">Select our date:</label>
-            <input type="date" id="date">
-            <button id="downloadBtn">Download Date File</button>
+        <h1>My Diary</h1>
+        <div id="diary-entries"></div>
+        <div class="input-area">
+            <textarea id="diary-input" placeholder="Write your diary..."></textarea>
+            <button onclick="saveEntry()">Save</button>
         </div>
     </div>
     <script src="script.js"></script>
