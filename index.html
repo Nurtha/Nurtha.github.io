@@ -93,12 +93,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
   <script>
-    let zoomLevel = 14;
+    let zoomLevel = 30;
 
     function changeZoom(delta) {
       zoomLevel += delta;
-      if (zoomLevel < 10) zoomLevel = 10;
-      if (zoomLevel > 30) zoomLevel = 30;
+      if (zoomLevel < 20) zoomLevel = 20;
+      if (zoomLevel > 50) zoomLevel = 50;
       document.querySelectorAll('.code-area').forEach(el => {
         el.style.fontSize = zoomLevel + "px";
       });
