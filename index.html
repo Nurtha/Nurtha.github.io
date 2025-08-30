@@ -1,34 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Confession Wall</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Photo Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+    }
+    .gallery img {
+      width: 250px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      object-fit: cover;
+      transition: transform 0.2s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Confession Wall</h1>
-    <p class="subtitle">Public Diary — Read and Share Anonymous Confessions</p>
-
-    <form id="confessionForm">
-      <textarea id="confessionInput" placeholder="Write your confession here..." rows="4" required></textarea>
-      <br>
-      <button type="submit">Submit Confession</button>
-    </form>
-
-    <div id="confessions">
-      <!-- Confessions will appear here -->
-    </div>
-
-    <footer>
-      <small>
-        Confessions are public and anonymous. Powered by Firebase Firestore.<br>
-        Please avoid posting sensitive or personal information.
-      </small>
-    </footer>
+  <h1>Wall of Shame</h1>
+  <div class="gallery">
+  
+    <!-- Example images, update these as you add photos -->
+    <img src="Screenshot_2025-08-30-15-16-18-66.jpg" alt="">
+    <!-- Add more images here -->
   </div>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
-  <script src="confession.js"></script>
 </body>
 </html>
