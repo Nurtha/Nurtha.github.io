@@ -1,451 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous Image Uploader</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f3f6fa;
-            color: #222;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        .container {
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-        }
-        h1 {
-            color: #0055a5;
-            margin-bottom: 20px;
-        }
-        .uploader {
-            margin-bottom: 20px;
-        }
-        input[type="file"] {
-            display: none;
-        }
-        .custom-file-upload {
-            display: inline-block;
-            padding: 10px 24px;
-            cursor: pointer;
-            background: linear-gradient(90deg, #0055a5 0%, #0099ff 100%);
-            color: #fff;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 16px;
-            transition: box-shadow 0.2s;
-        }
-        .custom-file-upload:hover {
-            box-shadow: 0 0 10px #0099ff;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
-            justify-content: center;
-        }
-        .gallery img {
-            max-width: 180px;
-            max-height: 180px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .empty {
-            color: #888;
-            margin-top: 30px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Photo Wall</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      margin: 2em 0 1em;
+    }
+    .wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .wall img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      object-fit: cover;
+      background: #eee;
+      transition: transform 0.3s;
+    }
+    .wall img:hover {
+      transform: scale(1.03);
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Anonymous Image Uploader</h1>
-        <div class="uploader">
-            <label for="file-upload" class="custom-file-upload">
-                Upload Image
-            </label>
-            <input id="file-upload" type="file" accept="image/*" multiple>
-        </div>
-        <div class="gallery" id="gallery"></div>
-        <div id="emptyMsg" class="empty">No images uploaded yet.</div>
-    </div>
-    <script>
-        const fileInput = document.getElementById('file-upload');
-        const gallery = document.getElementById('gallery');
-        const emptyMsg = document.getElementById('emptyMsg');
+  <h1>Photo Wall</h1>
+  <div class="wall" id="wall"></div>
+  <script>
+    // List your image filenames here
+    const images = [
+      "photo1.jpg",
+      "photo2.png",
+      "photo3.jpeg"
+      // Add more as you upload!
+    ];
 
-        fileInput.addEventListener('change', function() {
-            const files = Array.from(fileInput.files);
-            files.forEach(file => {
-                if (!file.type.startsWith('image/')) return;
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    gallery.appendChild(img);
-                    emptyMsg.style.display = 'none';
-                };
-                reader.readAsDataURL(file);
-            });
-            fileInput.value = '';
-        });
-    </script>
-</body>
-</html>            padding: 5px 15px;
-            background: #3a5a7a;
-        }
-        
-        .win-message {
-            font-size: 24px;
-            color: gold;
-            margin: 10px 0;
-            height: 30px;
-        }
-        
-        /* Bonus Game Popup */
-        .bonus-game {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .bonus-content {
-            background: linear-gradient(145deg, #1a3a5a, #0a1a2a);
-            padding: 30px;
-            border-radius: 15px;
-            border: 4px solid gold;
-            max-width: 500px;
-            text-align: center;
-        }
-        
-        .bonus-options {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .bonus-option {
-            width: 80px;
-            height: 80px;
-            background: #3a5a7a;
-            border: 2px solid gold;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        
-        .bonus-option:hover {
-            transform: scale(1.1);
-        }
-        
-        @media (max-width: 600px) {
-            .reel {
-                width: 60px;
-                height: 180px;
-            }
-            
-            .symbol {
-                height: 60px;
-                font-size: 24px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="game-container">
-        <h1>SUPER ACE SLOT</h1>
-        <div class="balance">Balance: $<span id="balance">1000</span></div>
-        <div class="win-message" id="winMessage"></div>
-        
-        <div class="slot-reels" id="reels">
-            <!-- Reels will be generated by JavaScript -->
-        </div>
-        
-        <div class="bet-controls">
-            <button class="bet-btn" id="betDown">-</button>
-            <div>Bet: $<span id="currentBet">10</span></div>
-            <button class="bet-btn" id="betUp">+</button>
-        </div>
-        
-        <div class="controls">
-            <button id="spinBtn">SPIN</button>
-            <button id="maxBetBtn">MAX BET</button>
-        </div>
-    </div>
-    
-    <!-- Bonus Game Popup -->
-    <div class="bonus-game" id="bonusGame">
-        <div class="bonus-content">
-            <h2>BONUS GAME!</h2>
-            <p>Pick a card to win instant cash!</p>
-            <div class="bonus-options" id="bonusOptions">
-                <!-- Options will be generated by JavaScript -->
-            </div>
-            <div id="bonusResult"></div>
-            <button id="collectBonus">COLLECT</button>
-        </div>
-    </div>
-    
-    <script>
-        // Game Variables
-        let balance = 1000;
-        let currentBet = 10;
-        let spinning = false;
-        let freeSpins = 0;
-        let freeSpinMultiplier = 1;
-        
-        // Symbols: A, K, Q, J, 10, 9, WILD (Ace), SCATTER (Gold Star)
-        const symbols = ['A', 'K', 'Q', 'J', '10', '9', '🃏', '⭐'];
-        const symbolValues = {
-            'A': [0, 0, 5, 10, 20],
-            'K': [0, 0, 4, 8, 15],
-            'Q': [0, 0, 3, 6, 12],
-            'J': [0, 0, 2, 4, 10],
-            '10': [0, 0, 1, 3, 8],
-            '9': [0, 0, 0, 2, 5],
-            '🃏': [0, 0, 10, 20, 50], // Wild
-            '⭐': [0, 0, 0, 0, 0] // Scatter (triggers free spins)
-        };
-        
-        // DOM Elements
-        const balanceDisplay = document.getElementById('balance');
-        const currentBetDisplay = document.getElementById('currentBet');
-        const spinBtn = document.getElementById('spinBtn');
-        const maxBetBtn = document.getElementById('maxBetBtn');
-        const betUpBtn = document.getElementById('betUp');
-        const betDownBtn = document.getElementById('betDown');
-        const reelsContainer = document.getElementById('reels');
-        const winMessage = document.getElementById('winMessage');
-        const bonusGame = document.getElementById('bonusGame');
-        const bonusOptions = document.getElementById('bonusOptions');
-        const bonusResult = document.getElementById('bonusResult');
-        const collectBonusBtn = document.getElementById('collectBonus');
-        
-        // Initialize the reels (5 reels, 3 rows each)
-        function initReels() {
-            reelsContainer.innerHTML = '';
-            for (let i = 0; i < 5; i++) {
-                const reel = document.createElement('div');
-                reel.className = 'reel';
-                reel.id = `reel${i}`;
-                for (let j = 0; j < 3; j++) {
-                    const symbol = document.createElement('div');
-                    symbol.className = 'symbol';
-                    symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-                    reel.appendChild(symbol);
-                }
-                reelsContainer.appendChild(reel);
-            }
-        }
-        
-        // Spin the reels
-        function spinReels() {
-            if (spinning || balance < currentBet) return;
-            
-            spinning = true;
-            winMessage.textContent = '';
-            balance -= currentBet;
-            updateBalance();
-            
-            // Animate each reel
-            const reels = document.querySelectorAll('.reel');
-            let spinsCompleted = 0;
-            
-            reels.forEach((reel, index) => {
-                const symbols = reel.querySelectorAll('.symbol');
-                let spinDuration = 1000 + index * 300; // Staggered spinning
-                
-                // Randomize symbols during spin
-                const spinInterval = setInterval(() => {
-                    symbols.forEach(symbol => {
-                        symbol.textContent = symbolsList[Math.floor(Math.random() * symbolsList.length)];
-                    });
-                }, 100);
-                
-                // Stop spinning after duration
-                setTimeout(() => {
-                    clearInterval(spinInterval);
-                    
-                    // Set final symbols
-                    symbols.forEach((symbol, i) => {
-                        symbol.textContent = getRandomSymbol();
-                    });
-                    
-                    spinsCompleted++;
-                    if (spinsCompleted === reels.length) {
-                        spinning = false;
-                        checkWins();
-                    }
-                }, spinDuration);
-            });
-        }
-        
-        // Check for winning combinations
-        function checkWins() {
-            const reels = document.querySelectorAll('.reel');
-            const symbolsMatrix = [];
-            let totalWin = 0;
-            let scatterCount = 0;
-            
-            // Build matrix of symbols
-            reels.forEach(reel => {
-                const reelSymbols = Array.from(reel.querySelectorAll('.symbol')).map(s => s.textContent);
-                symbolsMatrix.push(reelSymbols);
-            });
-            
-            // Check middle row (simplified for demo)
-            const middleRow = symbolsMatrix.map(reel => reel[1]);
-            
-            // Count scatters (for free spins)
-            scatterCount = middleRow.filter(s => s === '⭐').length;
-            
-            // Check for wilds and regular symbols
-            // (In a real game, you'd check all paylines)
-            let consecutive = 1;
-            let prevSymbol = null;
-            
-            for (let i = 0; i < middleRow.length; i++) {
-                const symbol = middleRow[i];
-                
-                if (symbol === '🃏' || symbol === prevSymbol || prevSymbol === '🃏') {
-                    consecutive++;
-                    if (symbol !== '🃏') prevSymbol = symbol;
-                } else {
-                    consecutive = 1;
-                    prevSymbol = symbol;
-                }
-                
-                // Calculate win based on consecutive symbols
-                if (consecutive >= 3 && symbol !== '⭐') {
-                    const winMultiplier = symbolValues[symbol][consecutive - 1];
-                    const winAmount = currentBet * winMultiplier * freeSpinMultiplier;
-                    totalWin += winAmount;
-                }
-            }
-            
-            // Trigger free spins if enough scatters
-            if (scatterCount >= 3) {
-                freeSpins = scatterCount === 3 ? 8 : scatterCount === 4 ? 12 : 15;
-                freeSpinMultiplier = scatterCount === 5 ? 3 : 2;
-                winMessage.textContent = `FREE SPINS ACTIVATED! ${freeSpins} spins x${freeSpinMultiplier}`;
-                setTimeout(() => {
-                    spinReels(); // Auto-start free spins
-                }, 2000);
-            } else if (totalWin > 0) {
-                balance += totalWin;
-                updateBalance();
-                winMessage.textContent = `WIN: $${totalWin}`;
-                
-                // Random bonus game chance (20%)
-                if (Math.random() < 0.2 && totalWin >= currentBet * 5) {
-                    setTimeout(showBonusGame, 1500);
-                }
-            }
-        }
-        
-        // Bonus Game
-        function showBonusGame() {
-            bonusOptions.innerHTML = '';
-            bonusResult.textContent = '';
-            
-            // Create 6 options with random prizes
-            const prizes = [];
-            for (let i = 0; i < 6; i++) {
-                prizes.push(Math.floor(currentBet * (2 + Math.random() * 10)));
-            }
-            
-            // One big prize
-            prizes[Math.floor(Math.random() * 6)] = currentBet * 20;
-            
-            prizes.forEach((prize, i) => {
-                const option = document.createElement('div');
-                option.className = 'bonus-option';
-                option.textContent = '?';
-                option.dataset.prize = prize;
-                option.addEventListener('click', () => selectBonusOption(option));
-                bonusOptions.appendChild(option);
-            });
-            
-            bonusGame.style.display = 'flex';
-        }
-        
-        function selectBonusOption(option) {
-            const prize = parseInt(option.dataset.prize);
-            option.textContent = `$${prize}`;
-            option.style.background = 'gold';
-            option.style.color = 'black';
-            
-            balance += prize;
-            updateBalance();
-            bonusResult.textContent = `You won $${prize}!`;
-            
-            // Disable other options
-            Array.from(bonusOptions.children).forEach(opt => {
-                if (opt !== option) {
-                    opt.style.opacity = '0.5';
-                    opt.style.pointerEvents = 'none';
-                }
-            });
-            
-            collectBonusBtn.style.display = 'block';
-        }
-        
-        // Helper Functions
-        function getRandomSymbol() {
-            const rand = Math.random();
-            if (rand < 0.05) return '⭐'; // 5% scatter
-            if (rand < 0.15) return '🃏'; // 10% wild
-            return symbols[Math.floor(Math.random() * 6)]; // Regular symbols
-        }
-        
-        function updateBalance() {
-            balanceDisplay.textContent = balance;
-            spinBtn.disabled = balance < currentBet;
-        }
-        
-        // Event Listeners
-        spinBtn.addEventListener('click', spinReels);
-        
-        maxBetBtn.addEventListener('click', () => {
-            currentBet = Math.min(100, balance);
-            currentBetDisplay.textContent = currentBet;
-        });
-        
-        betUpBtn.addEventListener('click', () => {
-            if (currentBet < balance) currentBet += 5;
-            currentBetDisplay.textContent = currentBet;
-        });
-        
-        betDownBtn.addEventListener('click', () => {
-            if (currentBet > 5) currentBet -= 5;
-            currentBetDisplay.textContent = currentBet;
-        });
-        
-        collectBonusBtn.addEventListener('click', () => {
-            bonusGame.style.display = 'none';
-        });
-        
-        // Initialize game
-        initReels();
-    </script>
+    const wallDiv = document.getElementById('wall');
+    images.forEach(img => {
+      const imgElem = document.createElement('img');
+      imgElem.src = "photos/" + img;
+      imgElem.alt = img;
+      wallDiv.appendChild(imgElem);
+    });
+  </script>
 </body>
 </html>
