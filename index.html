@@ -1,41 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Photo Gallery</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java Code Showcase</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
+      font-family: "Segoe UI", sans-serif;
+      background: #121212;
+      color: #eee;
+      margin: 0;
+      padding: 0;
     }
-    h1 {
+    header {
+      background: #1f1f1f;
+      padding: 1rem;
       text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff5c8d;
     }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      justify-content: center;
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
     }
-    .gallery img {
-      width: 500px;
-      height: auto;
+    .code-block {
+      background: #1e1e1e;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      object-fit: cover;
-      transition: transform 0.2s;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
     }
-    .gallery img:hover {
-      transform: scale(1.05);
+    .download-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 14px;
+      background: #ff5c8d;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+    .download-btn:hover {
+      background: #ff2e6a;
     }
   </style>
 </head>
 <body>
-  <h1>Wall of Shame</h1>
-  <div class="gallery">
-  
-    <!-- Example images, update these as you add photos -->
-    <img src="Screenshot_2025-08-30-15-16-18-66.jpg" alt="">
-    <!-- Add more images here -->
+  <header>My Java Codes</header>
+
+  <div class="container">
+    <div class="code-block">
+      <h2>HelloWorld.java</h2>
+      <pre><code class="language-java">
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, Classmates!");
+    }
+}
+      </code></pre>
+      <a href="codes/HelloWorld.java" download class="download-btn">Download</a>
+    </div>
+
+    <div class="code-block">
+      <h2>Calculator.java</h2>
+      <pre><code class="language-java">
+import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter two numbers: ");
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        System.out.println("Sum: " + (a + b));
+    }
+}
+      </code></pre>
+      <a href="codes/Calculator.java" download class="download-btn">Download</a>
+    </div>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
 </body>
 </html>
