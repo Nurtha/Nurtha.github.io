@@ -38,15 +38,8 @@
 <body>
   <h1>Photo Wall</h1>
   <div class="wall" id="wall"></div>
+  <script src="images.js"></script>
   <script>
-    // List your image filenames here
-    const images = [
-      "photo1.jpg",
-      "photo2.png",
-      "photo3.jpeg"
-      // Add more as you upload!
-    ];
-
     const wallDiv = document.getElementById('wall');
     images.forEach(img => {
       const imgElem = document.createElement('img');
