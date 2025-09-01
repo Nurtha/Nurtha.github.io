@@ -79,7 +79,14 @@
       gap: 24px;
       justify-content: center;
     }
-    .gallery img {
+
+    .gallery-item {
+      text-align: center;
+      color: #eee; /* text color */
+      font-size: 14px;
+    }
+
+    .gallery-item img {
       width: 150px;
       height: auto;
       border-radius: 10px;
@@ -87,7 +94,8 @@
       object-fit: cover;
       transition: transform 0.2s;
     }
-    .gallery img:hover {
+
+    .gallery-item img:hover {
       transform: scale(1.05);
     }
   </style>
@@ -107,12 +115,15 @@
     </div>
   </div>
   <div class="gallery">
-    <img src="Dado.jpeg">
-    <p>Dado, Dan Rogelio V.</p>
-    <img src="Justine.jpeg">
-    <p>Justine Bryan Napalan</p>
+    <div class="gallery-item">
+      <img src="Dado.jpeg" alt="Dado">
+      <p>Dado, Dan Rogelio V.</p>
+    </div>
+    <div class="gallery-item">
+      <img src="Justine.jpeg" alt="Justine">
+      <p>Justine Bryan Napalan</p>
+    </div>
   </div>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
   <script>
