@@ -175,19 +175,21 @@
       }
     }
 
+    // Download helper (force .java extension + MIME type)
     function downloadFile(url, filename) {
       fetch(url)
-        .then(res => res.blob())
-        .then(blob => {
+        .then(res => res.text())
+        .then(text => {
+          const blob = new Blob([text], { type: "text/x-java-source" });
           const link = document.createElement("a");
           link.href = URL.createObjectURL(blob);
-          link.download = filename.endsWith(".java") ? filename : filename + ".java"; 
+          link.download = filename.endsWith(".java") ? filename : filename + ".java";
           link.click();
           URL.revokeObjectURL(link.href);
         })
         .catch(err => console.error("Download failed:", err));
     }
-    // Download helper
+
     loadCodes();
   </script>
 </body>
