@@ -13,8 +13,12 @@ public class StudentAve {
         System.out.print("English: ");
         test3 = scan.nextInt();
         System.out.println("===================");
+
+        
         average = (test1 + test2 + test3) / 3;
         System.out.printf("Student Average: %s\n", average);
+
+        
         if (average >= 90 && average <= 100) {
             System.out.println("Grade A");
         }else if (average >= 80 && average <= 89) {
