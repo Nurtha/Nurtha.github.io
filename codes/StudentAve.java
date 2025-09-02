@@ -2,20 +2,38 @@ import java.util.Scanner;
 public class StudentAve { 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        int test1,test2,test3,average;
-        System.out.println("===================");
-        System.out.println("====Enter Score====");
-        System.out.println("===================");
-        System.out.print("Math Score: ");
-        test1 = scan.nextInt();
-        System.out.print("Science: ");
-        test2 = scan.nextInt();
-        System.out.print("English: ");
-        test3 = scan.nextInt();
+        
+        int test1 = 0, test2 = 0, test3 = 0;
+        double average;
+        boolean loop = true;
+        
+        while (loop) {
+            try {
+                System.out.println("===================");
+                System.out.println("====Enter Score====");
+                System.out.println("===================");
+                System.out.print("Math Score: ");
+                test1 = scan.nextInt();
+                System.out.print("Science: ");
+                test2 = scan.nextInt();
+                System.out.print("English: ");
+                test3 = scan.nextInt();
+
+                if (test3 > 100 && test2 > 100 && test1 > 100) {
+                    loop = true;
+                }else {
+                    loop = false;
+                }
+            } catch (Exception e) {
+                System.out.println("Error Please Try Again");
+                scan.next();
+            }
+        }
         System.out.println("===================");
 
         
-        average = (test1 + test2 + test3) / 3;
+        average = test1 + test2 + test3;
+        average /= 3;
         System.out.printf("Student Average: %s\n", average);
 
         
