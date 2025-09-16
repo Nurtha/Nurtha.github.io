@@ -146,7 +146,7 @@
     function changeZoom(delta) {
       zoomLevel += delta;
       if (zoomLevel < 1) zoomLevel = 1;
-      if (zoomLevel > 10) zoomLevel = 10;
+      if (zoomLevel > 100) zoomLevel = 100;
       document.querySelectorAll('.code-area').forEach(el => {
         el.style.fontSize = zoomLevel + "px";
       });
