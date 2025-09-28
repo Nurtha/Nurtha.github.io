@@ -154,20 +154,11 @@
           text-decoration: none;
           box-shadow: 0 4px 6px rgba(0,0,0,0.2);
        ">
-      <img src="GcashQR.jpg" alt="GCash QR" style="width:120px; margin-bottom:8px;">
+      <img src="GCashQR.jpg" alt="GCash QR" style="width:120px; margin-bottom:8px;">
       Buy me a coffee
     </a>
   </div>
     
-  <script>
-    const button = document.getElementById('payButton');
-    const input = document.getElementById('amount');
-  
-    input.addEventListener('input', () => {
-      const amt = input.value;
-      button.href = `gcash://pay?recipient=09100733662&amount=${amt}`;
-    });
-  </script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
