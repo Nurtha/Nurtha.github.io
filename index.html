@@ -140,15 +140,12 @@
   </div>
 
   <div style="text-align:center; margin:20px 0;">
-    <input id="amount" type="number" placeholder="Enter amount" 
-           style="padding:8px 12px; font-size:16px; border-radius:5px; border:1px solid #ccc; width:120px; margin-bottom:10px;">
-    <br>
-    <a id="payButton" href="#" target="_blank"
+    <a href="#" onclick="alert('Scan this QR with your GCash app to pay!'); return false;" 
        style="
           display: inline-flex;
+          flex-direction: column;
           align-items: center;
-          gap: 10px;
-          padding: 12px 25px;
+          padding: 12px 20px;
           background: linear-gradient(45deg, #00a859, #00d97e);
           color: white;
           font-weight: bold;
@@ -156,16 +153,12 @@
           border-radius: 8px;
           text-decoration: none;
           box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-          transition: transform 0.1s ease-in-out;
-       "
-       onmouseover="this.style.transform='scale(1.05)';"
-       onmouseout="this.style.transform='scale(1)';">
-       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/GCash_logo.svg" 
-            alt="GCash" style="height:24px;">
-       Buy me a coffee
+       ">
+      <img src="GcashQR.jpg" alt="GCash QR" style="width:120px; margin-bottom:8px;">
+      Buy me a coffee
     </a>
   </div>
-  
+    
   <script>
     const button = document.getElementById('payButton');
     const input = document.getElementById('amount');
