@@ -138,8 +138,12 @@
        <p>Flores, Daniel John Langreo</p>
     </div> 
   </div>
+
   <div style="text-align:center; margin:20px 0;">
-    <a href="https://paygcash.app.gcash.com/expresspay/09075632206" target="_blank"
+    <input id="amount" type="number" placeholder="Enter amount" 
+           style="padding:8px 12px; font-size:16px; border-radius:5px; border:1px solid #ccc; width:120px; margin-bottom:10px;">
+    <br>
+    <a id="payButton" href="#" target="_blank"
        style="
           display: inline-flex;
           align-items: center;
@@ -161,6 +165,17 @@
        Buy me a coffee
     </a>
   </div>
+  
+  <script>
+    const button = document.getElementById('payButton');
+    const input = document.getElementById('amount');
+  
+    input.addEventListener('input', () => {
+      const amt = input.value;
+      button.href = `gcash://pay?recipient=YOURNUMBER&amount=${amt}`;
+    });
+  </script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
   <script>
