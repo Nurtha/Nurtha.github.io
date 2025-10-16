@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Moonshot Chat – custom personality</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --fg: #111;
+      --accent: #0066ff;
+      --user: #d1e0ff;
+      --assistant: #ffffff;
+      font-family: system-ui, sans-serif;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      padding: 1rem;
+      border-bottom: 1px solid #ccd6e0;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1rem;
+      gap: 1rem;
+    }
+    #chat {
+      flex: 1;
+      overflow-y: auto;
+      border: 1px solid #ccd6e0;
+      border-radius: .5rem;
+      padding: .75rem;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    #chat div {
+      padding: .5rem .75rem;
+      border-radius: .5rem;
+      max-width: 75%;
+    }
+    .user {
+      align-self: flex-end;
+      background: var(--user);
+    }
+    .assistant {
+      align-self: flex-start;
+      background: var(--assistant);
+      border: 1px solid #e0e6ed;
+    }
+    form {
+      display: flex;
+      gap: .5rem;
+    }
+    textarea {
+      flex: 1;
+      resize: none;
+      padding: .5rem;
+      border: 1px solid #ccd6e0;
+      border-radius: .5rem;
+    }
+    button {
+      padding: 0 1.25rem;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      border-radius: .5rem;
+      cursor: pointer;
+    }
+    button:hover {
+      filter: brightness(1.1);
+    }
+    details {
+      border: 1px solid #ccd6e0;
+      border-radius: .5rem;
+      padding: .75rem;
+      background: #fff;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      margin-bottom: .5rem;
+    }
+    label {
+      display: block;
+      margin-bottom: .5rem;
+    }
+    input[type="range"] {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Moonshot Chat – custom personality</h1>
+    <p>Zero backend.  Settings live in your browser.</p>
+  </header>
+
+  <main>
+    <!-- ---- SETTINGS ---- -->
+    <details>
+      <summary>⚙️ Personality settings</summary>
+
+      <label>
+        System prompt<br>
+        <textarea id="system" rows="4" style="width:100%" placeholder="You are a helpful assistant. Be concise."></textarea>
+      </label>
+
+      <label>
+        Temperature
+        <input id="temp" type="range" min="0" max="1" step="0.05" value="0.7">
+        <span id="tempVal">0.7</span>
+      </label>
+
+      <label>
+        Max tokens
+        <input id="maxTokens" type="number" min="1" max="8192" value="512">
+      </label>
+
+      <button id="saveSet">Save</button>
+    </details>
+
+    <!-- ---- CHAT ---- -->
+    <div id="chat"></div>
+
+    <form id="form">
+      <textarea id="in" rows="2" required placeholder="Type a message…"></textarea>
+      <button>Send</button>
+    </form>
+  </main>
+
+  <script>
+    /* ---------- CONFIG – PUT YOURS HERE ---------- */
+    const API_KEY  = 'sk-YeCPlCYr3dCaUDBjSqKnsJkQNrx8Am4Xfj9Jvcb3LrXAd6RK'; // ← your key
+    const MODEL    = 'moonshot-v1-8k';                    // ← swap if you like
+    const ENDPOINT = 'https://api.moonshot.cn/v1/chat/completions';
+
+    /* ---------- DOM ---------- */
+    const $chat      = document.getElementById('chat');
+    const $in        = document.getElementById('in');
+    const $form      = document.getElementById('form');
+    const $system    = document.getElementById('system');
+    const $temp      = document.getElementById('temp');
+    const $tempVal   = document.getElementById('tempVal');
+    const $maxTokens = document.getElementById('maxTokens');
+    const $saveSet   = document.getElementById('saveSet');
+
+    /* ---------- SETTINGS ---------- */
+    const loadSet = () => {
+      $system.value    = localStorage.getItem('sys')  ?? 'You are a helpful assistant. Be concise.';
+      $temp.value      = localStorage.getItem('temp') ?? '0.7';
+      $maxTokens.value = localStorage.getItem('max')  ?? '512';
+      $tempVal.textContent = $temp.value;
+    };
+    loadSet();
+    $temp.addEventListener('input', () => $tempVal.textContent = $temp.value);
+    $saveSet.addEventListener('click', () => {
+      localStorage.setItem('sys',  $system.value);
+      localStorage.setItem('temp', $temp.value);
+      localStorage.setItem('max',  $maxTokens.value);
+      alert('Saved ✓');
+    });
+
+    /* ---------- RENDER ---------- */
+    const append = (role, text) => {
+      const div = document.createElement('div');
+      div.className = role;
+      div.textContent = text;
+      $chat.appendChild(div);
+      $chat.scrollTop = $chat.scrollHeight;
+    };
+
+    /* ---------- SUBMIT ---------- */
+    $form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const userText = $in.value.trim();
+      if (!userText) return;
+      append('user', userText);
+      $in.value = '';
+      append('assistant', '…');
+
+      const messages = [
+        { role: 'system', content: $system.value },
+        { role: 'user',   content: userText }
+      ];
+
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${API_KEY}`
+          },
+          body: JSON.stringify({
+            model,
+            messages,
+            temperature: parseFloat($temp.value),
+            max_tokens:  parseInt($maxTokens.value)
+          })
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status} – ${await res.text()}`);
+
+        const json = await res.json();
+        const reply = json.choices[0].message.content;
+        $chat.lastChild.textContent = reply;
+      } catch (err) {
+        $chat.lastChild.textContent = 'Error: ' + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
