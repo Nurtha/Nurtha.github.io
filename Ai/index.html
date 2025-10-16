@@ -144,7 +144,7 @@
   <script>
     /* ---------- CONFIG – PUT YOURS HERE ---------- */
     const API_KEY  = 'sk-YeCPlCYr3dCaUDBjSqKnsJkQNrx8Am4Xfj9Jvcb3LrXAd6RK'; // ← your key
-    const MODEL    = 'Kiwi-Researcher';                    // ← swap if you like
+    const MODEL    = 'moonshot-v1-8k';                    // ← swap if you like
     const ENDPOINT = 'https://api.moonshot.cn/v1/chat/completions';
 
     /* ---------- DOM ---------- */
@@ -204,7 +204,7 @@
             Authorization: `Bearer ${API_KEY}`
           },
           body: JSON.stringify({
-            model,
+            model: MODEL,
             messages,
             temperature: parseFloat($temp.value),
             max_tokens:  parseInt($maxTokens.value)
