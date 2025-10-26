@@ -1,0 +1,81 @@
+body {
+  background-color: #800020;
+  font-family: 'Shadows Into Light', cursive;
+
+}
+.postcard{
+  /*grid for post card*/
+   display:grid;
+    grid-template-columns: .80fr .30fr ;
+    grid-template-rows: 1fr  1fr ;
+    grid-template-areas:
+    "dear stamp"
+    "note test";
+  background-color: #f7f7f7;
+  width: 850px;
+  height: 535px;
+  margin: 0 auto;
+  margin-top: 5%;
+  border-radius: 2%;
+  padding: 2%;
+  padding-bottom: 12%;
+  box-shadow: .8em .8em 15px rgba(0,0,0,.3);
+
+}
+
+h1 {
+  text-align: center;
+  color: #f7f7f7;
+  font-size: 300%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+
+#mail{
+  grid-area:stamp;
+  display:grid;
+    grid-template-columns:  1fr 1fr ;
+    grid-template-rows: 1fr ;
+    grid-template-areas:
+    "from stamps";
+}
+#mail_stamp {
+  max-width: 95%;
+  padding-left: 10%;
+  grid-area: stamps;
+  padding-top: 10%;
+}
+
+#from{
+    font-size: 125%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    grid-area: from;
+}
+#message{
+  font-size: 119%;
+  grid-area: note;  
+  margin-right: 7%;
+}
+
+#address {
+  font-size: 150%;
+  display: flex;
+  justify-content: center;
+  padding-top: 30%;
+  text-decoration: underline;
+  grid-area: test;
+  color:red;
+}
+
+
+#dear{
+  padding-top: 5%;
+  font-size: 200%;
+  grid-area: dear;
+
+}
+
+
+

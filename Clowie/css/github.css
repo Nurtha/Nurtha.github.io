@@ -1,0 +1,92 @@
+#front {
+  z-index: 1;
+  position: absolute;
+  background-color: #0b6570;
+  width:590px;
+  height: 620px;
+  text-align: center;
+  transition: 1s;
+  transform-origin: 0;
+  border: 1px solid #000;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  padding-top: 5%;
+}
+
+.open-card {
+  transform: rotateY(180deg);
+}
+
+#front-title {
+  max-width: 90%;
+  padding-bottom: 3%;
+}
+
+#front-pic {
+  max-width: 75%;
+}
+
+#inside {
+  z-index: 0;
+  position: absolute;
+  background-color: white;
+  width: 590px;
+  height: 620px;
+  text-align: center;
+  border: 1px solid #000;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  padding-top: 5%;
+}
+
+#inside-recipient {
+  color: #000;
+  font-size: 12pt;
+  padding: 20px 0 40px 0;
+}
+
+#inside-pic {
+  width: auto;
+  height: 150px;
+  margin-bottom: 32px;
+}
+
+#message {
+  font-size: 12pt;
+  text-align: center;
+  padding: 0 20px 0 20px;
+}
+
+#inside-sender {
+  color: #000;
+  font-size: 12pt;
+  text-align: center;
+  padding: 0 20px 0 20px;
+}
+
+
+body {
+  font-family: 'Shadows Into Light Two', cursive;
+
+  background: linear-gradient(-45deg, white, #fee4e1, #b4d3dd, #bab4dd);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+ 
+}
+
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
