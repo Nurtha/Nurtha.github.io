@@ -1,0 +1,4 @@
+/* TEAM */
+Owner: Athrun Kyle Sison
+Main Developer: Athrun Kyle Sison
+Site: nurtha.dev
