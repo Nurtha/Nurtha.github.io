@@ -1,1 +1,1 @@
-# Just a practice Web Notepad
+# Our Web with me the only dev and then the user
