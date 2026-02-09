@@ -1,1 +1,5 @@
+excude:
+    - node_modules
+    - hupya/node_modules
+
 theme: jekyll-theme-minimal
